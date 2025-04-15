@@ -1,0 +1,13 @@
+name: Python Quality Checks
+on: [pull_request]
+jobs:
+  quality-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+      - run: pip install black flake8
+      - run: black --check .
+      - run: flake8 .
